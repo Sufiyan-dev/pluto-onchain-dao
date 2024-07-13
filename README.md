@@ -68,3 +68,18 @@ npx hardhat run ./deploy/deployBox.js --network localhost
 4. Execute
     - After the proposal is queued, it can be executed.
 
+### Frontend
+This frontend application allows users to interact with a decentralized autonomous organization (DAO) deployed on a Hardhat local node. Users can view available proposals, vote on them, and see their voting weight as well as the current state of each proposal.
+
+#### Features
+- View Proposals: See a list of all active proposals.
+- Vote on Proposals: Cast your vote on any proposal.
+- Vote Weight: View your voting weight based on your token holdings.
+- Proposal State: Check the current state of each proposal.
+
+#### Prerequisites
+- Node.js: Ensure you have Node.js installed.
+- MetaMask: A MetaMask wallet extension for your browser.
+- Hardhat: A local Ethereum development environment.
+
+

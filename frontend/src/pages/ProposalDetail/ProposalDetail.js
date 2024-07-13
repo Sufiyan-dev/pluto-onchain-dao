@@ -13,6 +13,7 @@ const ProposalDetail = ({ connectedAccount }) => {
   const [signer, setSigner] = useState(null);
   const [support, setSupport] = useState(0);
   const [hasVoted, setHasVoted] = useState(false);
+  const [userVoteWeight, setUserVoteWeight] = useState(0);
   const location = useLocation();
 
   const { proposal } = location.state || {};
@@ -115,6 +116,21 @@ const ProposalDetail = ({ connectedAccount }) => {
           }
         };
 
+        const getUserVoteWeight = async () => {
+          if(contractInstance && proposal) {
+            try {
+              const weight = await contractInstance.getVotes();
+              console.log("user current vote weight ", weight);
+              setUserVoteWeight(weight);
+            } catch (err) {
+              console.error("Error fetching user vote weight:", err);
+              alert("Failed to fetch user vote weight. Check console for details.");
+            }
+          } else {
+            alert("Contract instance or proposal not found!");
+          }
+        }
+
   if (!proposal) {
     return <div>No proposal data found.</div>;
   }
@@ -135,6 +151,7 @@ const ProposalDetail = ({ connectedAccount }) => {
         </select>
       </div>
       <div>Has voted : {hasVoted ? 'Voted' :  'Not voted'}</div>
+      <div> Account vote weight : {userVoteWeight} </div>
     </div>
   );
 }
