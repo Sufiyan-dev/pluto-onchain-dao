@@ -45,8 +45,8 @@ export async function vote(proposalIndex: number, governorAddress: string) {
 
     console.log("Voted let's go!");
 }
-const index = 0;
-const governorAddress = '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9'
+const index = 1;
+const governorAddress = '0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44'
 
 vote(index,governorAddress).catch((error) => {
     console.error(error);

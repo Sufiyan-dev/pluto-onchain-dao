@@ -9,3 +9,5 @@ export async function moveBlocks(amount: number) {
         });
     }
 }
+
+moveBlocks(2);

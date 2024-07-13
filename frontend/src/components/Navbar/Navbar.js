@@ -1,35 +1,38 @@
 import React from 'react';
 import "./Navbar.css"
+import { connectMetamask } from '../../utils/initialize';
+import { Box, Button, Typography } from "@mui/material"
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = (props) => {
-    async function connectMetamask() {
-        try {
-          //check metamask is installed
-          if (window.ethereum) {
-            // instantiate Web3 with the injected provider
-            // const web3 = new Web3(window.ethereum);
-    
-            //request user to connect accounts (Metamask will prompt)
-            const result = await window.ethereum.request({ method: "eth_requestAccounts" });
-            console.log("result ", result)
-    
-            //get the connected accounts
-            // const accounts = await web3.eth.getAccounts();
-    
-            //show the first connected account in the react page
-            props.setConnectedAccount(result[0]);
-          } else {
-            alert("Please download metamask");
-          }
-        } catch (err) {
-          alert(err.message)
+  const navigate = useNavigate();
+
+  const handleNavbarClick = () => {
+    navigate('/');
+  };
+
+    const handleConnect = async () => {
+        const result = await connectMetamask();
+        if(result.message){
+            props.setConnectedAccount(result.result[0]);
+        } else {
+            alert(result.result)
         }
-      }
+    }
+    const handleDisconnect = async () => {
+        props.setConnectedAccount('');
+    }
 
   return (
-    <div className='navbar-wrapper'>
-        <button onClick={connectMetamask}>{props.connectedAccount ? props.connectedAccount : 'Connect'}</button>
-    </div>
+    <Box display="flex" alignItems="center" justifyContent={'space-around'} gap={4} p={2} className='navbar-wrapper' >
+        <Typography variant="h6" gutterBottom onClick={handleNavbarClick} >DAO</Typography>
+        <Button variant="outlined" onClick={props.connectedAccount ? handleDisconnect : handleConnect}>{props.connectedAccount ? props.connectedAccount.substring(0, 5) +
+                    "..." +
+                    props.connectedAccount.substring(
+                      props.connectedAccount.length - 5,
+                      props.connectedAccount.length
+                    ) : 'Connect'}</Button>
+    </Box>
   )
 }
 

@@ -96,11 +96,11 @@ export async function propose(governorAddress: string, boxAddress: string, funct
     console.log(`Current Proposal Deadline: ${proposalDeadline}`)
 }
 
-const governorAddress = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9";
-const boxAddress = "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853";
+const governorAddress = "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44";
+const boxAddress = "0x09635F643e140090A9A8Dcd712eD6285858ceBef";
 const functionToCall = "store";
-const args:(string | number)[] = [38];
-const proposalDescription = "Proposal #1: Storing 34 in the box!";
+const args:(string | number)[] = [34];
+const proposalDescription = "Proposal #3: Storing 34 in the box!";
 
 propose(governorAddress,boxAddress,functionToCall,args, proposalDescription).catch((error) => {
     console.error(error);
