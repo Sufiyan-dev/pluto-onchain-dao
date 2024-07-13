@@ -17,7 +17,7 @@ export async function deployBox(timeLock:string) {
 }
 const timeLock = "";
 
-// deployBox(timeLock).catch((error) => {
-//         console.error(error);
-//         process.exitCode = 1;
-// });
+deployBox(timeLock).catch((error) => {
+        console.error(error);
+        process.exitCode = 1;
+});
