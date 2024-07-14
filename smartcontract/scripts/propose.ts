@@ -86,6 +86,7 @@ export async function propose(governorAddress: string, boxAddress: string, funct
     const proposalState = await governor.state(proposalId)
     const proposalSnapShot = await governor.proposalSnapshot(proposalId)
     const proposalDeadline = await governor.proposalDeadline(proposalId)
+    const currentBlock = await ethers.provider.getBlockNumber();
 
     // the Proposal State is an enum data type, defined in the IGovernor contract.
     // 0:Pending, 1:Active, 2:Canceled, 3:Defeated, 4:Succeeded, 5:Queued, 6:Expired, 7:Executed
@@ -94,13 +95,15 @@ export async function propose(governorAddress: string, boxAddress: string, funct
     console.log(`Current Proposal Snapshot: ${proposalSnapShot}`)
     // The block number the proposal voting expires
     console.log(`Current Proposal Deadline: ${proposalDeadline}`)
+
+    console.log(`Current block number ${currentBlock}`);
 }
 
-const governorAddress = "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44";
-const boxAddress = "0x09635F643e140090A9A8Dcd712eD6285858ceBef";
+const governorAddress = "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9";
+const boxAddress = "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853";
 const functionToCall = "store";
 const args:(string | number)[] = [34];
-const proposalDescription = "Proposal #3: Storing 34 in the box!";
+const proposalDescription = "Proposal #1: Storing 34 in the box!";
 
 propose(governorAddress,boxAddress,functionToCall,args, proposalDescription).catch((error) => {
     console.error(error);

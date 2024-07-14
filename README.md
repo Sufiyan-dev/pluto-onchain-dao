@@ -39,7 +39,7 @@ This repository contains the code for a decentralized autonomous organization (D
 
 ## Getting Started
 ### Prerequisites
-- Node.js v14.x or v16.x    
+- Node.js v18.x    
 
 ### Smart Contract Deployment
 1. Install dependencies:
@@ -83,3 +83,5 @@ This frontend application allows users to interact with a decentralized autonomo
 - Hardhat: A local Ethereum development environment.
 
 
+### Demo 
+https://drive.google.com/file/d/1lcxSThRlXTfj-yF8IUrv_nMlP5SJRBn3/view?usp=sharing

@@ -36,6 +36,7 @@ const ProposalDetail = ({ connectedAccount }) => {
           if (contractInstance) {
             handleUpdateProposalState();
             getUserVoteState();
+            getUserVoteWeight()
           }
         }, [contractInstance]);
       
@@ -119,9 +120,12 @@ const ProposalDetail = ({ connectedAccount }) => {
         const getUserVoteWeight = async () => {
           if(contractInstance && proposal) {
             try {
-              const weight = await contractInstance.getVotes();
+              const provider = new ethers.BrowserProvider(window.ethereum);
+              const snapshot = await provider.getBlockNumber();
+              console.log("block no ", snapshot);
+              const weight = await contractInstance.getVotes(connectedAccount,snapshot - 1 );
               console.log("user current vote weight ", weight);
-              setUserVoteWeight(weight);
+              setUserVoteWeight(Number(weight)/10**18);
             } catch (err) {
               console.error("Error fetching user vote weight:", err);
               alert("Failed to fetch user vote weight. Check console for details.");
