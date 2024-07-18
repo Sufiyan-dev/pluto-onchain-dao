@@ -84,4 +84,3 @@ This frontend application allows users to interact with a decentralized autonomo
 
 
 ### Demo 
-https://drive.google.com/file/d/1lcxSThRlXTfj-yF8IUrv_nMlP5SJRBn3/view?usp=sharing
